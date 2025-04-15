@@ -1,4 +1,4 @@
-# 🧪 Technical Test - PokeApp
+# 🧪 Technical Test - PokeList
 
 This is an Android project developed as part of a **technical test**. The application fetches and displays Pokémon data using the [PokeAPI](https://pokeapi.co).
 
