@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.apriega77.presentation.detail.DetailScreen
 import com.apriega77.presentation.homecontainer.HomeContainer
 import com.apriega77.presentation.login.LoginScreen
 import com.apriega77.presentation.register.RegisterScreen
@@ -132,7 +133,9 @@ fun PokeListMainScreen() {
 
 
             composable(route = PokeListNav.DETAIL.route) {
-
+                DetailScreen(state.name) {
+                    viewModel.sendEvent(it)
+                }
             }
         }
 
