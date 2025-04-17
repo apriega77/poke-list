@@ -4,6 +4,9 @@ This is an Android project developed as part of a **technical test**. The applic
 
 ---
 
+# ▶️ [Watch the video](assets/video.mp4)
+
+---
 ## 🛠️ Tech Stack
 
 - **Architecture**: Clean Architecture with **Domain-Driven Design (DDD)**
