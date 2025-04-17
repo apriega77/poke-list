@@ -42,7 +42,7 @@ sealed class ToolBarState {
         override val name: String
             get() = "Register"
         override val showBackButton: Boolean
-            get() = false
+            get() = true
     }
 
     data object Home : ToolBarState() {

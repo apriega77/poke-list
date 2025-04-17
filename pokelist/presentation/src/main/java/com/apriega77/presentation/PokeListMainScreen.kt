@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.apriega77.presentation.login.LoginScreen
+import com.apriega77.presentation.register.RegisterScreen
 
 @Composable
 fun PokeListMainScreen() {
@@ -76,13 +78,19 @@ fun PokeListMainScreen() {
                 .height(50.dp)
         ) {
             if (showBackButton) {
-                IconButton(onClick = { backPressedDispatcher?.onBackPressed() }) {
+                IconButton(
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .padding(start = 8.dp),
+                    onClick = { backPressedDispatcher?.onBackPressed() },
+                ) {
                     Image(
                         painter = painterResource(R.drawable.ic_back_button),
                         contentDescription = null,
                         modifier = Modifier
-                            .align(Alignment.CenterStart)
-                            .padding(16.dp)
+                            .size(16.dp)
+                            .align(Alignment.Center)
+
                     )
                 }
             }
@@ -108,7 +116,9 @@ fun PokeListMainScreen() {
             }
 
             composable(route = PokeListNav.REGISTER.route) {
-
+                RegisterScreen {
+                    viewModel.sendEvent(it)
+                }
             }
 
             composable(route = PokeListNav.HOME.route) {

@@ -1,4 +1,4 @@
-package com.apriega77.presentation.login
+package com.apriega77.presentation.register
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,31 +17,35 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.apriega77.presentation.PokeListEvent
 import com.apriega77.presentation.ToolBarState
+import com.apriega77.presentation.login.LoginEvent
+import kotlinx.coroutines.flow.collect
 
 @Composable
-fun LoginScreen(pokeListEvent: (PokeListEvent) -> Unit) {
-    val viewModel = hiltViewModel<LoginViewModel>()
+fun RegisterScreen(pokeListEvent: (PokeListEvent) -> Unit) {
+    val viewModel = hiltViewModel<RegisterViewModel>()
     val state by viewModel.state.collectAsState()
 
-
     LaunchedEffect(Unit) {
-        pokeListEvent(PokeListEvent.SetToolBarState { ToolBarState.Login })
-        viewModel.sendEvent(LoginEvent.CheckIsUserSignedInUseCase)
+        pokeListEvent(PokeListEvent.SetToolBarState { ToolBarState.Register })
         viewModel.effect.collect {
             when (it) {
-                LoginEffect.NavigateToHome -> pokeListEvent(PokeListEvent.NavigateToHome)
-                LoginEffect.NavigateToRegister -> pokeListEvent(PokeListEvent.NavigateToRegister)
-                is LoginEffect.ShowToast -> pokeListEvent(PokeListEvent.ShowToast(it.text))
+                RegisterEffect.NavigateToHome -> {
+                    pokeListEvent(PokeListEvent.NavigateToHome)
+                }
+
+                is RegisterEffect.ShowToast -> {
+                    pokeListEvent(PokeListEvent.ShowToast(it.text))
+                }
             }
         }
     }
 
     Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
         TextField(
-            value = state.username,
-            label = { Text("Username") },
+            value = state.name,
+            label = { Text("Name") },
             onValueChange = {
-                viewModel.sendEvent(LoginEvent.Username(it))
+                viewModel.sendEvent(RegisterEvent.Name(it))
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -49,10 +53,10 @@ fun LoginScreen(pokeListEvent: (PokeListEvent) -> Unit) {
         )
 
         TextField(
-            value = state.password,
-            label = { Text("Password") },
+            value = state.username,
+            label = { Text("Username") },
             onValueChange = {
-                viewModel.sendEvent(LoginEvent.Password(it))
+                viewModel.sendEvent(RegisterEvent.Username(it))
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -60,21 +64,26 @@ fun LoginScreen(pokeListEvent: (PokeListEvent) -> Unit) {
                 .padding(top = 16.dp)
         )
 
-        Button(
+        TextField(
+            value = state.password,
+            label = { Text("Password") },
+            onValueChange = {
+                viewModel.sendEvent(RegisterEvent.Password(it))
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
-                .padding(top = 16.dp),
-            onClick = { viewModel.sendEvent(LoginEvent.Login) }) {
-            Text("Login")
-        }
+                .padding(top = 16.dp)
+        )
+
 
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp),
-            onClick = { viewModel.sendEvent(LoginEvent.NavigateToRegister) }) {
+            enabled = state.enableButton,
+            onClick = { viewModel.sendEvent(RegisterEvent.Register) }) {
             Text("Register")
         }
     }
