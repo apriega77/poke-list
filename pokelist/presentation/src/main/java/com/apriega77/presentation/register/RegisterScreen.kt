@@ -17,8 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.apriega77.presentation.PokeListEvent
 import com.apriega77.presentation.ToolBarState
-import com.apriega77.presentation.login.LoginEvent
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun RegisterScreen(pokeListEvent: (PokeListEvent) -> Unit) {
