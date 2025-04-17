@@ -30,7 +30,7 @@ fun RegisterScreen(pokeListEvent: (PokeListEvent) -> Unit) {
         viewModel.effect.collect {
             when (it) {
                 RegisterEffect.NavigateToHome -> {
-                    pokeListEvent(PokeListEvent.NavigateToHome)
+                    pokeListEvent(PokeListEvent.NavigateToHomeContainer)
                 }
 
                 is RegisterEffect.ShowToast -> {

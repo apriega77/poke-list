@@ -29,7 +29,7 @@ fun LoginScreen(pokeListEvent: (PokeListEvent) -> Unit) {
         viewModel.sendEvent(LoginEvent.CheckIsUserSignedInUseCase)
         viewModel.effect.collect {
             when (it) {
-                LoginEffect.NavigateToHome -> pokeListEvent(PokeListEvent.NavigateToHome)
+                LoginEffect.NavigateToHome -> pokeListEvent(PokeListEvent.NavigateToHomeContainer)
                 LoginEffect.NavigateToRegister -> pokeListEvent(PokeListEvent.NavigateToRegister)
                 is LoginEffect.ShowToast -> pokeListEvent(PokeListEvent.ShowToast(it.text))
             }

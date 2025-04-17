@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.apriega77.presentation.homecontainer.HomeContainer
 import com.apriega77.presentation.login.LoginScreen
 import com.apriega77.presentation.register.RegisterScreen
 
@@ -47,17 +48,14 @@ fun PokeListMainScreen() {
                     navController.navigate(PokeListNav.DETAIL.route)
                 }
 
-                PokeListEffect.NavigateToHome -> {
-                    navController.navigate(PokeListNav.HOME.route) {
+                PokeListEffect.NavigateToHomeContainer -> {
+                    navController.navigate(PokeListNav.HOME_CONTAINER.route) {
                         popUpTo(navController.graph.startDestinationId) {
                             inclusive = true
                         }
                     }
                 }
 
-                PokeListEffect.NavigateToProfile -> {
-                    navController.navigate(PokeListNav.PROFILE.route)
-                }
 
                 PokeListEffect.NavigateToRegister -> {
                     navController.navigate(PokeListNav.REGISTER.route)
@@ -70,38 +68,43 @@ fun PokeListMainScreen() {
         }
     }
     val showBackButton by remember(state) { mutableStateOf(state.toolBarState.invoke().showBackButton) }
+    val showToolBar by remember(state) { mutableStateOf(state.toolBarState.invoke().showToolBar) }
+
 
     Column(Modifier.fillMaxSize()) {
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-        ) {
-            if (showBackButton) {
-                IconButton(
-                    modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = 8.dp),
-                    onClick = { backPressedDispatcher?.onBackPressed() },
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_back_button),
-                        contentDescription = null,
+        if (showToolBar) {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                if (showBackButton) {
+                    IconButton(
                         modifier = Modifier
-                            .size(16.dp)
-                            .align(Alignment.Center)
+                            .align(Alignment.CenterStart)
+                            .padding(start = 8.dp),
+                        onClick = { backPressedDispatcher?.onBackPressed() },
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_back_button),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(16.dp)
+                                .align(Alignment.Center)
 
-                    )
+                        )
+                    }
                 }
-            }
 
-            Text(
-                text = state.toolBarState.invoke().name,
-                modifier = Modifier.align(Alignment.Center),
-                fontWeight = FontWeight.Bold,
-                fontSize = TextUnit(22F, TextUnitType.Sp)
-            )
+                Text(
+                    text = state.toolBarState.invoke().name,
+                    modifier = Modifier.align(Alignment.Center),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = TextUnit(22F, TextUnitType.Sp)
+                )
+            }
         }
+
         NavHost(
             modifier = Modifier
                 .fillMaxSize()
@@ -121,13 +124,12 @@ fun PokeListMainScreen() {
                 }
             }
 
-            composable(route = PokeListNav.HOME.route) {
-
+            composable(route = PokeListNav.HOME_CONTAINER.route) {
+                HomeContainer {
+                    viewModel.sendEvent(it)
+                }
             }
 
-            composable(route = PokeListNav.PROFILE.route) {
-
-            }
 
             composable(route = PokeListNav.DETAIL.route) {
 

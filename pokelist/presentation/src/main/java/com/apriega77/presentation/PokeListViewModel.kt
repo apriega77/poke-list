@@ -18,13 +18,6 @@ class PokeListViewModel @Inject constructor() :
                 sendEffect(PokeListEffect.NavigateToDetail)
             }
 
-            PokeListEvent.NavigateToHome -> {
-                sendEffect(PokeListEffect.NavigateToHome)
-            }
-
-            PokeListEvent.NavigateToProfile -> {
-                sendEffect(PokeListEffect.NavigateToProfile)
-            }
 
             PokeListEvent.NavigateToRegister -> {
                 sendEffect(PokeListEffect.NavigateToRegister)
@@ -36,6 +29,10 @@ class PokeListViewModel @Inject constructor() :
 
             is PokeListEvent.ShowToast -> {
                 sendEffect(PokeListEffect.ShowToast(event.text))
+            }
+
+            PokeListEvent.NavigateToHomeContainer -> {
+                sendEffect(PokeListEffect.NavigateToHomeContainer)
             }
         }
     }
