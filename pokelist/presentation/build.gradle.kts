@@ -60,7 +60,6 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.coil)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 }

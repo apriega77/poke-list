@@ -51,6 +51,7 @@ android {
 dependencies {
     api(project(":pokelist:presentation"))
     api(project(":pokelist:data"))
+    api(project(":pokelist:di"))
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 }
