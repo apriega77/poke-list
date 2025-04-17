@@ -22,9 +22,9 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun login(args: LoginUser): Boolean {
-        val login = userDatabaseHelper.login(username = args.username, password = args.password)
-        sessionManager.setSignedIn(args.username)
-        return login
+        val isSuccess = userDatabaseHelper.login(username = args.username, password = args.password)
+        if (isSuccess) sessionManager.setSignedIn(args.username)
+        return isSuccess
     }
 
     override suspend fun getProfile(): User {
@@ -32,7 +32,7 @@ class UserRepositoryImpl @Inject constructor(
         return userDatabaseHelper.getUserByUsername(username) ?: User("", "")
     }
 
-    override suspend fun  isUserSignedIn(): Boolean {
+    override suspend fun isUserSignedIn(): Boolean {
         return sessionManager.isUserSignedIn()
     }
 
