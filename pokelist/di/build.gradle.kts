@@ -45,11 +45,7 @@ dependencies {
 
     implementation(project(":pokelist:domain"))
     implementation(project(":pokelist:data"))
-    implementation(libs.retrofit)
-    implementation(libs.gson)
-    implementation(libs.retrofit.gson)
     implementation(libs.hilt.android)
     implementation(libs.hilt.compiler)
-    implementation(libs.logging.interceptor)
     ksp(libs.hilt.compiler)
 }

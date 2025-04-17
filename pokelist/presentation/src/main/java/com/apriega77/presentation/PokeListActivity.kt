@@ -11,7 +11,7 @@ class PokeListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            PokeListMainScreen()
         }
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -42,4 +43,11 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(":pokelist:domain"))
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.compiler)
+    implementation(libs.logging.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.retrofit.gson)
+    ksp(libs.hilt.compiler)
 }
