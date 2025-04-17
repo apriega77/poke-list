@@ -1,6 +1,5 @@
 package com.apriega77.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.apriega77.domain.model.PokemonResult
 import com.apriega77.domain.model.request.PokemonRequest
@@ -24,7 +23,6 @@ class HomeViewModel @Inject constructor(private val getPokemonListUseCase: GetPo
         viewModelScope.launch {
             when (event) {
                 HomeEvent.GetPokemon -> {
-                    Log.d("TESTTT", "triggered")
                     val result =
                         getPokemonListUseCase.invoke(PokemonRequest(offset = offset, limit = limit))
                     when (result) {
@@ -43,7 +41,7 @@ class HomeViewModel @Inject constructor(private val getPokemonListUseCase: GetPo
                 }
 
                 is HomeEvent.NavigateToDetail -> {
-
+                    sendEffect(HomeEffect.NavigateToDetail(event.name))
                 }
             }
         }

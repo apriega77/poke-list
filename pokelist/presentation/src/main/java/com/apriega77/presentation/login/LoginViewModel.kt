@@ -6,6 +6,7 @@ import com.apriega77.domain.usecase.IsUserSignedInUseCase
 import com.apriega77.domain.usecase.LoginUseCase
 import com.apriega77.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,6 +50,7 @@ class LoginViewModel @Inject constructor(
 
                 LoginEvent.CheckIsUserSignedInUseCase -> {
                     val isSignedIn = isUserSignedInUseCase.invoke(Unit)
+                    delay(300)
                     if (isSignedIn) sendEffect(LoginEffect.NavigateToHome)
                 }
             }

@@ -76,7 +76,7 @@ fun HomeScreen(pokeListEvent: (PokeListEvent) -> Unit) {
                             Modifier
                                 .fillMaxWidth()
                                 .clickable {
-                                    pokeListEvent(PokeListEvent.NavigateToDetail(it.name))
+                                    viewModel.sendEvent(HomeEvent.NavigateToDetail(it.name))
                                 }) {
                             Text(
                                 text = it.name,
@@ -107,4 +107,5 @@ fun reachedBottom(lazyListState: LazyListState): Boolean {
     val isLastItemVisible = lastVisibleItemIndex >= totalItemsCount - 1
 
 
-    return !isListScrollable || isLastItemVisible}
+    return !isListScrollable || isLastItemVisible
+}
