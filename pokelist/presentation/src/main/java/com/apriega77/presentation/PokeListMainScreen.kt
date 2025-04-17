@@ -65,6 +65,14 @@ fun PokeListMainScreen() {
                 is PokeListEffect.ShowToast -> {
                     Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
                 }
+
+                PokeListEffect.NavigateToLogin -> {
+                    navController.navigate(PokeListNav.LOGIN.route) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                    }
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ sealed class PokeListEvent {
     data class NavigateToDetail(val name: String) : PokeListEvent()
     data class SetToolBarState(val toolBarState: () -> ToolBarState) : PokeListEvent()
     data class ShowToast(val text: String) : PokeListEvent()
+    data object NavigateToLogin : PokeListEvent()
 }
 
 sealed class PokeListEffect {
@@ -15,6 +16,7 @@ sealed class PokeListEffect {
     data object NavigateToHomeContainer : PokeListEffect()
     data object NavigateToDetail : PokeListEffect()
     data class ShowToast(val text: String) : PokeListEffect()
+    data object NavigateToLogin : PokeListEffect()
 }
 
 enum class PokeListNav(val route: String) {

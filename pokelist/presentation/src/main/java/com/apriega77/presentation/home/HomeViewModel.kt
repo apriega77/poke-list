@@ -4,13 +4,17 @@ import androidx.lifecycle.viewModelScope
 import com.apriega77.domain.model.PokemonResult
 import com.apriega77.domain.model.request.PokemonRequest
 import com.apriega77.domain.usecase.GetPokemonListUseCase
+import com.apriega77.domain.usecase.LogoutUseCase
 import com.apriega77.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val getPokemonListUseCase: GetPokemonListUseCase) :
+class HomeViewModel @Inject constructor(
+    private val getPokemonListUseCase: GetPokemonListUseCase,
+    private val logoutUseCase: LogoutUseCase
+) :
     BaseViewModel<HomeState, HomeEvent, HomeEffect>() {
     override fun getInitialState(): HomeState {
         return HomeState.Loading
@@ -42,6 +46,11 @@ class HomeViewModel @Inject constructor(private val getPokemonListUseCase: GetPo
 
                 is HomeEvent.NavigateToDetail -> {
                     sendEffect(HomeEffect.NavigateToDetail(event.name))
+                }
+
+                HomeEvent.Logout -> {
+                    val isSuccess = logoutUseCase.invoke(Unit)
+                    if (isSuccess) sendEffect(HomeEffect.NavigateToLogin)
                 }
             }
         }

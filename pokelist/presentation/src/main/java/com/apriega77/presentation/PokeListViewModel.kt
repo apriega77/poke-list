@@ -34,6 +34,10 @@ class PokeListViewModel @Inject constructor() :
             PokeListEvent.NavigateToHomeContainer -> {
                 sendEffect(PokeListEffect.NavigateToHomeContainer)
             }
+
+            PokeListEvent.NavigateToLogin -> {
+                sendEffect(PokeListEffect.NavigateToLogin)
+            }
         }
     }
 }

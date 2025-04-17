@@ -7,6 +7,7 @@ import com.apriega77.domain.usecase.GetPokemonListUseCase
 import com.apriega77.domain.usecase.GetProfileUseCase
 import com.apriega77.domain.usecase.IsUserSignedInUseCase
 import com.apriega77.domain.usecase.LoginUseCase
+import com.apriega77.domain.usecase.LogoutUseCase
 import com.apriega77.domain.usecase.RegisterUserUseCase
 import dagger.Module
 import dagger.Provides
@@ -44,4 +45,7 @@ object Provide {
     fun provideGetPokemonListUseCase(pokemonRepository: PokemonRepository) =
         GetPokemonListUseCase(pokemonRepository)
 
+    @Provides
+    @Singleton
+    fun provideLogoutUseCase(userRepository: UserRepository) = LogoutUseCase(userRepository)
 }

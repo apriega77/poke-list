@@ -18,7 +18,14 @@ class SessionManager @Inject constructor(@ApplicationContext private val context
 
     fun isUserSignedIn(): Boolean = getSignedInUser() != null
 
-    fun signOut() {
-        prefs.edit { remove("signed_in_user") }
+    fun signOut(): Boolean {
+        return try {
+            prefs.edit {
+                remove("signed_in_user")
+            }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 }

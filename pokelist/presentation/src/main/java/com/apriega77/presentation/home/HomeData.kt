@@ -11,10 +11,12 @@ sealed class HomeState {
 sealed class HomeEvent {
     data class NavigateToDetail(val name: String) : HomeEvent()
     data object GetPokemon : HomeEvent()
+    data object Logout : HomeEvent()
 }
 
-sealed class HomeEffect{
+sealed class HomeEffect {
     data class NavigateToDetail(val name: String) : HomeEffect()
+    data object NavigateToLogin : HomeEffect()
 }
 
 

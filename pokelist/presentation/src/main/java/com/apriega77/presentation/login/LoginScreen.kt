@@ -1,6 +1,5 @@
 package com.apriega77.presentation.login
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,7 +31,6 @@ fun LoginScreen(pokeListEvent: (PokeListEvent) -> Unit) {
             when (it) {
                 LoginEffect.NavigateToHome ->{
                     pokeListEvent(PokeListEvent.NavigateToHomeContainer)
-                    Log.d("testttt", "navigate to home")
                 }
                 LoginEffect.NavigateToRegister -> pokeListEvent(PokeListEvent.NavigateToRegister)
                 is LoginEffect.ShowToast -> pokeListEvent(PokeListEvent.ShowToast(it.text))

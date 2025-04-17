@@ -9,4 +9,5 @@ interface UserRepository {
     suspend fun login(args: LoginUser): Boolean
     suspend fun getProfile(): User
     suspend fun isUserSignedIn(): Boolean
+    suspend fun logout(): Boolean
 }

@@ -35,4 +35,8 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun  isUserSignedIn(): Boolean {
         return sessionManager.isUserSignedIn()
     }
+
+    override suspend fun logout(): Boolean {
+        return sessionManager.signOut()
+    }
 }

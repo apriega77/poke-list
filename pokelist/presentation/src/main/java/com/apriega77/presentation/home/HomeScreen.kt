@@ -38,6 +38,10 @@ fun HomeScreen(pokeListEvent: (PokeListEvent) -> Unit) {
                 is HomeEffect.NavigateToDetail -> {
                     pokeListEvent(PokeListEvent.NavigateToDetail(it.name))
                 }
+
+                HomeEffect.NavigateToLogin -> {
+                    pokeListEvent(PokeListEvent.NavigateToLogin)
+                }
             }
         }
     }
@@ -93,6 +97,12 @@ fun HomeScreen(pokeListEvent: (PokeListEvent) -> Unit) {
 
             }
         }
+
+        Button(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            onClick = { viewModel.sendEvent(HomeEvent.Logout) }) { Text("Logout") }
     }
 
 
