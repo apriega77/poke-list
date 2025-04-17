@@ -4,7 +4,7 @@ This is an Android project developed as part of a **technical test**. The applic
 
 ---
 
-# ▶️ [Watch the video](assets/video.mp4)
+# ▶️ [Watch the video](assets/demo.mp4)
 
 ---
 ## 🛠️ Tech Stack
